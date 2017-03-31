@@ -1,0 +1,38 @@
+---
+# create container
+- hosts: localhost
+  tasks:
+    - name: Create php-fpm container.
+      docker_container:
+        name: docker-php-fpm
+        image: centos:7
+        command: /bin/bash
+        tty: yes
+        state: started
+
+# provision
+- hosts: docker-php-fpm
+  connection: docker
+  pre_tasks:
+    - name: Add www user.
+      user:
+        name: www
+        uid: 1000
+        shell: /bin/sh
+  roles:
+    - role: shomatan.php-fpm
+      php_fpm_pool_user: www
+      php_fpm_pool_group: www
+
+# commit & finalize
+- hosts: localhost
+  tasks:
+    - name: Commit php-fpm image.
+      shell: docker commit docker-php-fpm shomatan/php-fpm:latest-centos7
+
+    - name: Destory php-fpm container.
+      docker_container:
+        name: docker-php-fpm
+        image: centos:7
+        command: /bin/bash
+        state: absent
