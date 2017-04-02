@@ -27,8 +27,12 @@
 # commit & finalize
 - hosts: localhost
   tasks:
+    - name: Define php_version.
+      set_fact: php_version=latest
+      when: php_version is not defined
+
     - name: Commit php-fpm image.
-      shell: docker commit docker-php-fpm shomatan/php-fpm:latest-centos7
+      shell: docker commit docker-php-fpm shomatan/php-fpm:{{ php_version }}-centos7
 
     - name: Destory php-fpm container.
       docker_container:
