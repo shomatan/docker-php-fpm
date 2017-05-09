@@ -1,0 +1,13 @@
+---
+# provision
+- hosts: all
+  pre_tasks:
+    - name: Add www user.
+      user:
+        name: www
+        uid: 1000
+        shell: /bin/sh
+  roles:
+    - role: shomatan.php-fpm
+      php_fpm_pool_user: www
+      php_fpm_pool_group: www
