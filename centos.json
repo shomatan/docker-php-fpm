@@ -1,0 +1,35 @@
+{
+  "variables": {
+    "ansible_host": "default",
+    "ansible_connection": "docker"
+  },
+  "builders": [
+    {
+      "type": "docker",
+      "image": "centos:7",
+      "commit": "true",
+      "author": "Shoma Nishitateno",
+      "run_command": [ "-d", "-i", "-t", "--name", "{{user `ansible_host`}}", "{{.Image}}", "/bin/bash" ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "user": "root",
+      "playbook_file": "site.yml",
+      "extra_arguments": [
+        "--extra-vars",
+        "ansible_host={{user `ansible_host`}} ansible_connection={{user `ansible_connection`}}"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "shomatan/php-fpm",
+        "tag": "7.1.5-centos"
+      }
+    ]
+  ]
+}
