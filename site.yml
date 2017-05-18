@@ -11,3 +11,4 @@
     - role: shomatan.php-fpm
       php_fpm_pool_user: www
       php_fpm_pool_group: www
+      php_fpm_error_log: /proc/self/fd/2
