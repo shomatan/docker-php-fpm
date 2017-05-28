@@ -9,7 +9,11 @@
       "image": "centos:7",
       "commit": "true",
       "author": "Shoma Nishitateno",
-      "run_command": [ "-d", "-i", "-t", "--name", "{{user `ansible_host`}}", "{{.Image}}", "/bin/bash" ]
+      "run_command": [ "-d", "-i", "-t", "--name", "{{user `ansible_host`}}", "{{.Image}}", "/bin/bash" ],
+      "changes": [
+        "ENTRYPOINT [\"/bin/bash\"]",
+        "CMD [\"/usr/bin/dumb-init\", \"php-fpm\", \"-F\"]"
+      ]
     }
   ],
   "provisioners": [

@@ -1,3 +1,4 @@
 ---
+- src: shomatan.dumb-init
 - src: shomatan.php-fpm
-  version: 0.9.1
+  version: 0.9.2
