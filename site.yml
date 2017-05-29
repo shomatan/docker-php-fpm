@@ -8,6 +8,7 @@
         uid: 1000
         shell: /bin/sh
   roles:
+    - role: shomatan.dumb-init
     - role: shomatan.php-fpm
       php_fpm_pool_user: www
       php_fpm_pool_group: www
