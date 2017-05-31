@@ -1,7 +1,8 @@
 {
   "variables": {
     "ansible_host": "default",
-    "ansible_connection": "docker"
+    "ansible_connection": "docker",
+    "php_version": "7.1"
   },
   "builders": [
     {
@@ -22,7 +23,9 @@
       "playbook_file": "site.yml",
       "extra_arguments": [
         "--extra-vars",
-        "ansible_host={{user `ansible_host`}} ansible_connection={{user `ansible_connection`}}"
+        "ansible_host={{user `ansible_host`}} ansible_connection={{user `ansible_connection`}}",
+        "--extra-vars",
+        "php_version={{user `php_version`}}"
       ]
     }
   ],
@@ -31,7 +34,7 @@
       {
         "type": "docker-tag",
         "repository": "shomatan/php-fpm",
-        "tag": "7.1.5-centos"
+        "tag": "{{user `php_version`}}-centos"
       }
     ]
   ]

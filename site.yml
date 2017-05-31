@@ -16,3 +16,11 @@
   post_tasks:
     - name: Purge yum cache.
       command: yum clean all
+
+    - name: Get php version.
+      command: php --version
+      register: result
+      changed_when: False
+    
+    - name: Output php version.
+      debug: var=result.stdout
