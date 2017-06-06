@@ -1,19 +1,6 @@
 # docker-php-fpm
 
-## Installation
+Based on the latest official [php-fpm](https://hub.docker.com/_/php/) image.
 
-    git clone https://github.com/shomatan/docker-php-fpm.git
-    cd docker-php-fpm
-    ansible-galaxy install -p roles/ -r requirements.yml
-
-## Build image
-
-    cd centos7
-
-### PHP 7.1
-
-    ansible-playbook site.yml
-
-### PHP 7.0
-
-    ansible-playbook site.yml -e php_version=7.0
+- Create `www` user and group as UID/GID=1000
+- Listening `/var/run/php-fpm/php-fpm.sock`
