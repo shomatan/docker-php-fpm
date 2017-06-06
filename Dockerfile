@@ -14,4 +14,6 @@ RUN set -ex \
 
 COPY files/php.ini /usr/local/etc/php/conf.d/
 
+VOLUME /var/run/php-fpm
+
 CMD ["php-fpm", "-F"]
