@@ -14,6 +14,7 @@
       php_fpm_pool_group: www
       php_fpm_error_log: /proc/self/fd/2
       php_fpm_catch_workers_output: "yes"
+      php_fpm_daemonize: "no"
       # TODO: Try this value.
       #php_fpm_error_log: /dev/fd/2
   post_tasks:
