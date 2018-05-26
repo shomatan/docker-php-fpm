@@ -1,6 +1,6 @@
 FROM php:5.6-fpm-alpine
 
-MAINTAINER Shoma Nishitateno <shoma416@gmail.com>
+LABEL maintainer "Shoma Nishitateno <shoma416@gmail.com>"
 
 RUN set -ex \
 	&& addgroup -g 1000 -S www \
