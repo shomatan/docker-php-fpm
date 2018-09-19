@@ -1,4 +1,4 @@
-FROM php:7.2.6-fpm-alpine
+FROM php:7.2.10-fpm-alpine
 
 LABEL maintainer "Shoma Nishitateno <shoma416@gmail.com>"
 
