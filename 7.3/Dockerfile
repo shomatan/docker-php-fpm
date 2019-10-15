@@ -138,7 +138,13 @@ COPY files/www.conf /usr/local/etc/php-fpm.d/www.conf.template
 COPY files/php7-fpm.conf /usr/local/etc/php-fpm.conf
 COPY files/php.ini-production /usr/local/etc/php.conf
 COPY files/docker-entrypoint.sh /usr/local/bin
-RUN chown -R www:www /usr/local/etc
+
+RUN set -xe \
+	&& chown -R www:www /usr/local/etc \
+	&& chown -R www:www /var/www/html \
+	&& chmod 755 /usr/local/bin/docker-entrypoint.sh
+
+WORKDIR /var/www/html
 
 USER www
 
